@@ -1,18 +1,35 @@
-{{!-- This is the base layout for your project, and will be used on every page. --}}
-
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
-    <link rel="stylesheet" href="{{root}}assets/css/app.css">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Stephen Perona | Welcome</title>
+    <link rel="stylesheet" href="/assets/css/app.css">
   </head>
   <body>
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        {{> nav}}
 
-    {{!-- Pages you create in the src/pages/ folder are inserted here when the flattened page is created. --}}
-    {{> body}}
+        <div class="off-canvas-content" data-off-canvas-content>
+          <div class="title-bar hide-for-large">
+            <div class="title-bar-left">
+              <button class="menu-icon" type="button" data-open="side-nav"></button>
+            </div>
+          </div>
+
+          <div id="main-wrap">
+            {{> body}}
+          </div>
+
+          <footer class="row">
+            <div class="small-12 columns">
+              All Content and Images © 2001-2016, Stephen Perona. All Rights Reserved.
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
 
     <script src="{{root}}assets/js/app.js"></script>
   </body>

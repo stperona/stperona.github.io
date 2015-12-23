@@ -1,0 +1,45 @@
+.off-canvas-content,
+.off-canvas-content {
+  background: none;
+}
+
+#main-wrap {
+  margin-top: 3rem;
+}
+
+.thumbnail-wrap {
+  display: block;
+  position: relative;
+  margin-bottom: 1rem;
+
+  .thumbnail {
+    margin-bottom: 0;
+  }
+
+  .thumbnail-caption {
+    background: rgba(0,0,0,.7);
+    bottom: 0;
+    color: $primary-color;
+    display: none;
+    font-size: 1.5em;
+    left: 0;
+    overflow: hidden;
+    padding: 18px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: auto;
+  }
+
+  &:hover {
+    .thumbnail-caption {
+      display: block;
+    }
+  }
+}
+
+footer {
+  color: $secondary-color;
+  margin: 3rem 0 1.25rem 0;
+  text-align: center;
+}
