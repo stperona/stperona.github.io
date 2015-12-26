@@ -4,23 +4,18 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Stephen Perona | Welcome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/app.css">
   </head>
   <body>
     <div class="off-canvas-wrapper">
       <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
         <div class="off-canvas position-left reveal-for-large" id="side-nav" data-off-canvas data-position="left">
-          <nav class="row column">
+          <nav id="content-wrap" class="row column">
             <img src="/assets/img/logo.png">
             <ul>
-              <li><a href="#">MODELING</a></li>
-              <li><a href="#">ILLUSTRATION</a></li>
-              <li><a href="#">TOYS</a></li>
-            </ul>
-        
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
+              <li id="contact-email"></li>
+              <li  id="contact-twitter"></li>
             </ul>
           </nav>
         </div>
@@ -28,8 +23,14 @@
 
         <div class="off-canvas-content" data-off-canvas-content>
           <div class="title-bar hide-for-large">
-            <div class="title-bar-left">
-              <button class="menu-icon" type="button" data-open="side-nav"></button>
+            <div class="row column small-centered text-center">
+              <img src="/assets/img/logo.png">
+            </div>
+            <div class="row small-up-3">
+              <div id="contact-wrap-small">
+                <span id="contact-email-small"></span><br>
+                <span id="contact-twitter-small"></span>
+              </div>
             </div>
           </div>
 
@@ -76,5 +77,6 @@
     </div>
 
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/components.js"></script>
   </body>
 </html>
