@@ -1,11 +1,14 @@
-var $        = require('gulp-load-plugins')();
-var argv     = require('yargs').argv;
-var browser  = require('browser-sync');
-var gulp     = require('gulp');
-var panini   = require('panini');
-var rimraf   = require('rimraf');
-var sequence = require('run-sequence');
-var sherpa   = require('style-sherpa');
+var $          = require('gulp-load-plugins')();
+var argv       = require('yargs').argv;
+var babelify   = require("babelify");
+var browser    = require('browser-sync');
+var browserify = require('browserify');
+var gulp       = require('gulp');
+var panini     = require('panini');
+var rimraf     = require('rimraf');
+var sequence   = require('run-sequence');
+var sherpa     = require('style-sherpa');
+var source     = require('vinyl-source-stream');
 
 // Check for --production flag
 var isProduction = !!(argv.production);
@@ -20,7 +23,7 @@ var COMPATIBILITY = ['last 2 versions', 'ie >= 9'];
 var PATHS = {
   assets: [
     'src/assets/**/*',
-    '!src/assets/{!img,js,scss}/**/*'
+    '!src/assets/{!img,js,react,scss}/**/*'
   ],
   sass: [
     'bower_components/foundation-sites/scss',
@@ -139,6 +142,17 @@ gulp.task('javascript', function() {
     .pipe(gulp.dest('dist/assets/js'));
 });
 
+// Parse and combine React JSX into one file
+// In production, the file is minified
+gulp.task('react', function() {
+ return browserify('src/assets/react/components.jsx', { debug: true })
+      .transform(babelify, {presets: ["es2015", "react"]})
+      .bundle()
+      .on("error", function (err) { console.log("Error: " + err.message); })
+      .pipe(source('components.js'))
+      .pipe(gulp.dest('dist/assets/js'));
+});
+
 // Copy images to the "dist" folder
 // In production, the images are compressed
 gulp.task('images', function() {
@@ -153,7 +167,7 @@ gulp.task('images', function() {
 
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function(done) {
-  sequence('clean', ['pages', 'sass', 'javascript', 'images', 'copy'], 'styleguide', done);
+  sequence('clean', ['pages', 'sass', 'javascript', 'react', 'images'], 'styleguide', done);
 });
 
 // Start a server with LiveReload to preview the site in
@@ -170,6 +184,7 @@ gulp.task('default', ['build', 'server'], function() {
   gulp.watch(['src/{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
   gulp.watch(['src/assets/scss/**/*.scss'], ['sass', browser.reload]);
   gulp.watch(['src/assets/js/**/*.js'], ['javascript', browser.reload]);
+  gulp.watch(['src/assets/react/**/*.jsx'], ['react', browser.reload]);
   gulp.watch(['src/assets/img/**/*'], ['images', browser.reload]);
   gulp.watch(['src/styleguide/**'], ['styleguide', browser.reload]);
 });

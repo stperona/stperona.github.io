@@ -1,12 +1,9 @@
-.menu-icon {
-  &:hover::after {
-    background: $secondary-color;
-    box-shadow: 0 7px 0 $secondary-color, 0 14px 0 $secondary-color;
-  }
+#contact-wrap-small {
+  margin: 0.5rem auto 0 auto;
+  width: 201px;
 
-  &::after {
-    background: $primary-color;
-    box-shadow: 0 7px 0 $primary-color, 0 14px 0 $primary-color;
+  i {
+    margin-right: .25rem;
   }
 }
 
@@ -15,11 +12,21 @@
   height: 100%;
   padding: 3.5rem 0 0 0.75rem;
 
+  #content-wrap {
+    position: relative;
+    top: 35%;
+  }
+
   ul {
     margin: 2rem 0 0 0;
 
     li {
+      font-weight: lighter;
       list-style: none;
+
+      i {
+        margin-right: .25rem;
+      }
     }
   }
 }

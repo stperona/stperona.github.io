@@ -25,5 +25,7 @@
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:400,300);
+
 @import 'components/layout';
 @import 'components/primary_nav';
